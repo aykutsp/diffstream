@@ -1,6 +1,6 @@
 # DiffStream
 
-DiffStream is a Visual Studio Code extension that shows a live feed of file changes in your workspace. It captures edits made in VS Code as well as changes written by terminals, scripts, generators, coding assistants, and other editors, then presents them as compact line-level diffs.
+DiffStream is a Visual Studio Code extension that shows a live feed of file changes in your workspace. It captures edits made in VS Code as well as changes written by terminals, scripts, generators, and other editors, then presents them as compact line-level diffs.
 
 ![DiffStream Feed](media/diffstream-feed.png)
 

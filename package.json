@@ -23,9 +23,10 @@
   "keywords": [
     "diff",
     "activity",
-    "ai",
     "changes",
-    "watcher"
+    "watcher",
+    "workspace",
+    "files"
   ],
   "galleryBanner": {
     "color": "#18181b",

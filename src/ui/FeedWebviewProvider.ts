@@ -8,7 +8,7 @@ type WebviewMessage =
   | { type: "command:resume" }
   | { type: "command:openFile"; filePath: string; line?: number }
   | { type: "command:copyDiff"; eventId: string }
-  | { type: "command:copyAiContext" };
+  | { type: "command:copyContext" };
 
 export class FeedWebviewProvider implements vscode.WebviewViewProvider, vscode.Disposable {
   static readonly viewType = "diffstream.feed";
@@ -69,7 +69,7 @@ export class FeedWebviewProvider implements vscode.WebviewViewProvider, vscode.D
       case "command:copyDiff":
         await this.controller.copyDiff(message.eventId);
         break;
-      case "command:copyAiContext":
+      case "command:copyContext":
         await this.controller.exportFeedMarkdown();
         break;
     }
@@ -345,7 +345,7 @@ export class FeedWebviewProvider implements vscode.WebviewViewProvider, vscode.D
     }
 
     document.getElementById("clear").addEventListener("click", () => vscode.postMessage({ type: "command:clear" }));
-    document.getElementById("copyContext").addEventListener("click", () => vscode.postMessage({ type: "command:copyAiContext" }));
+    document.getElementById("copyContext").addEventListener("click", () => vscode.postMessage({ type: "command:copyContext" }));
     pauseResume.addEventListener("click", () => vscode.postMessage({ type: state.paused ? "command:resume" : "command:pause" }));
     search.addEventListener("input", (event) => { state.query = event.target.value; render(); });
     filtersEl.addEventListener("click", (event) => {
