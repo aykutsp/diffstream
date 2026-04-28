@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <RootNamespace>DiffStream.VisualStudio</RootNamespace>
+    <AssemblyName>DiffStream.VisualStudio</AssemblyName>
+    <TargetName>DiffStream.VisualStudio</TargetName>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <VSSDKTargetPlatformRegRootSuffix>Exp</VSSDKTargetPlatformRegRootSuffix>
+    <ResourceManifest>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\resources.json</ResourceManifest>
+    <FileManifest>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\files.json</FileManifest>
+    <TemplateFileManifest>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\templateFiles.json</TemplateFileManifest>
+    <TemplateOutputDirectory>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\</TemplateOutputDirectory>
+    <CtoFileManifest>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\ctoFiles.json</CtoFileManifest>
+    <CtoCacheFile>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\mergeCto.cache</CtoCacheFile>
+    <CreateTemplateManifestsCacheFile>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\createTemplateManifests.cache</CreateTemplateManifestsCacheFile>
+    <CreatePkgDefAssemblyToProcess>$(MSBuildProjectDirectory)\obj\$(Configuration)\$(TargetFramework)\$(AssemblyName).dll</CreatePkgDefAssemblyToProcess>
+    <TargetVsixContainer>$(MSBuildProjectDirectory)\bin\$(Configuration)\DiffStream.VisualStudio.vsix</TargetVsixContainer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Resources\Icon.png" />
+    <Content Include="Resources\Preview.png" />
+    <Content Include="..\..\LICENSE">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <VSCTCompile Include="Menus.vsct" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.32112.339" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.14.2120" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Design" />
+  </ItemGroup>
+
+  <Import Project="$(NuGetPackageRoot)microsoft.vssdk.buildtools\17.14.2120\tools\VSSDK\Microsoft.VsSDK.targets"
+          Condition="Exists('$(NuGetPackageRoot)microsoft.vssdk.buildtools\17.14.2120\tools\VSSDK\Microsoft.VsSDK.targets')" />
+
+  <Target Name="PackageVsix" DependsOnTargets="Build;GeneratePkgDef;CopyPkgDef;CreateVsixContainer" />
+</Project>

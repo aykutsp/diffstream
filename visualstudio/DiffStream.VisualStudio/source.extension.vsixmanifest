@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Id="DiffStream.VisualStudio" Version="0.1.0" Language="en-US" Publisher="AykutSupurtulu" />
+    <DisplayName>DiffStream</DisplayName>
+    <Description xml:space="preserve">A local file change timeline for Visual Studio solutions with compact line-level diffs.</Description>
+    <MoreInfo>https://github.com/aykutsp/diffstream</MoreInfo>
+    <License>LICENSE</License>
+    <Icon>Resources\Icon.png</Icon>
+    <PreviewImage>Resources\Preview.png</PreviewImage>
+    <Tags>diff;timeline;review;workspace</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0,18.0)">
+      <ProductArchitecture>amd64</ProductArchitecture>
+    </InstallationTarget>
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" Version="[4.7.2,)" />
+  </Dependencies>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="DiffStream.VisualStudio" Path="|DiffStream.VisualStudio;PkgdefProjectOutputGroup|" />
+  </Assets>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,18.0)" DisplayName="Visual Studio core editor" />
+  </Prerequisites>
+</PackageManifest>
