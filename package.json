@@ -1,0 +1,196 @@
+{
+  "name": "diffstream",
+  "displayName": "DiffStream",
+  "description": "A live workspace change feed with compact line-level diffs for files edited inside or outside VS Code.",
+  "version": "0.1.0",
+  "publisher": "diffstream",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aykutsp/diffstream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aykutsp/diffstream/issues"
+  },
+  "homepage": "https://github.com/aykutsp/diffstream#readme",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "diff",
+    "activity",
+    "ai",
+    "changes",
+    "watcher"
+  ],
+  "galleryBanner": {
+    "color": "#18181b",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:diffstream.openFeed",
+    "workspaceContains:**/*"
+  ],
+  "main": "./dist/extension.js",
+  "extensionKind": [
+    "ui"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "test": "npm run compile && node --test --require ./dist/test/setup.js \"dist/test/**/*.test.js\"",
+    "package": "vsce package --allow-missing-repository --no-rewrite-relative-links",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "diff": "^5.2.0",
+    "minimatch": "^9.0.5"
+  },
+  "devDependencies": {
+    "@types/diff": "^5.2.3",
+    "@types/node": "^20.17.10",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "@vscode/vsce": "^3.9.1",
+    "eslint": "^9.17.0",
+    "typescript": "^5.7.2"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "diffstream.openFeed",
+        "title": "DiffStream: Open Feed",
+        "category": "DiffStream"
+      },
+      {
+        "command": "diffstream.start",
+        "title": "DiffStream: Start Watching",
+        "category": "DiffStream"
+      },
+      {
+        "command": "diffstream.stop",
+        "title": "DiffStream: Stop Watching",
+        "category": "DiffStream"
+      },
+      {
+        "command": "diffstream.pause",
+        "title": "DiffStream: Pause Feed",
+        "category": "DiffStream"
+      },
+      {
+        "command": "diffstream.resume",
+        "title": "DiffStream: Resume Feed",
+        "category": "DiffStream"
+      },
+      {
+        "command": "diffstream.clearFeed",
+        "title": "DiffStream: Clear Feed",
+        "category": "DiffStream"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "diffstream",
+          "title": "DiffStream",
+          "icon": "resources/diffstream.svg"
+        }
+      ]
+    },
+    "views": {
+      "diffstream": [
+        {
+          "id": "diffstream.feed",
+          "name": "DiffStream Feed",
+          "type": "webview"
+        }
+      ],
+      "explorer": [
+        {
+          "id": "diffstream.feed.explorer",
+          "name": "DiffStream Feed",
+          "type": "webview"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DiffStream",
+      "properties": {
+        "diffstream.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable DiffStream."
+        },
+        "diffstream.maxFeedItems": {
+          "type": "number",
+          "default": 300,
+          "minimum": 10,
+          "description": "Maximum number of recent feed items kept in memory."
+        },
+        "diffstream.debounceMs": {
+          "type": "number",
+          "default": 300,
+          "minimum": 0,
+          "description": "Per-file debounce delay in milliseconds."
+        },
+        "diffstream.maxFileSizeBytes": {
+          "type": "number",
+          "default": 1048576,
+          "minimum": 1024,
+          "description": "Maximum text file size to diff, in bytes."
+        },
+        "diffstream.ignoredGlobs": {
+          "type": "array",
+          "default": [
+            "**/node_modules/**",
+            "**/.git/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/out/**",
+            "**/coverage/**",
+            "**/.next/**",
+            "**/.turbo/**",
+            "**/vendor/**",
+            "**/target/**",
+            "**/.idea/**"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "Glob patterns ignored by DiffStream."
+        },
+        "diffstream.showInitialFileContentOnCreate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show initial added lines when a file is created."
+        },
+        "diffstream.showRemovedContentOnDelete": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show removed lines when a file is deleted."
+        },
+        "diffstream.autoStart": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically start watching when a workspace opens."
+        },
+        "diffstream.ignoredExtensions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "File extensions to ignore, for example .png or .lock."
+        }
+      }
+    }
+  }
+}
