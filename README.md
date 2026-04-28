@@ -1,24 +1,24 @@
 # DiffStream
 
-DiffStream is a Visual Studio Code extension that shows a live feed of file changes in your workspace. It captures edits made in VS Code as well as changes written by terminals, scripts, generators, and other editors, then presents them as compact line-level diffs.
+DiffStream is a Visual Studio Code extension that shows a local timeline of file changes in your workspace. It turns recent edits into compact line-level diffs so you can review what changed without leaving the editor.
 
 ![DiffStream Feed](media/diffstream-feed.png)
 
 ## Why DiffStream
 
-Modern development often happens across several tools at once. A file may change because you saved it, a formatter ran, a CLI updated generated code, or another editor modified the same workspace. Git can show the final result later; DiffStream shows the activity as it happens.
+Modern development often touches many files quickly. A file may change because you saved it, a formatter ran, generated code was updated, or a project task modified local files. Git can show the final result later; DiffStream helps you review the local change timeline as it happens.
 
 Use DiffStream when you want to:
 
-- Monitor workspace changes without waiting for commits.
-- See file creations, deletions, saves, and external updates in one place.
+- Review workspace changes without waiting for commits.
+- See file creations, deletions, saves, and local updates in one place.
 - Review compact line-level diffs while tools are modifying the project.
 - Copy a clean change summary for handoff, review, or context sharing.
 
 ## Features
 
-- Live workspace monitoring across multiple workspace folders.
-- Line-level diffs for added, removed, modified, saved, created, deleted, renamed, and externally changed files.
+- Live local workspace timeline across multiple workspace folders.
+- Line-level diffs for added, removed, modified, saved, created, deleted, renamed, and locally changed files.
 - Compact event cards with timestamps, relative paths, line ranges, and change counts.
 - Sidebar feed with search, type filters, pause/resume, clear, open file, and copy diff actions.
 - Best-effort rename detection for rapid delete/create operations with identical content.
@@ -111,28 +111,6 @@ npm run lint
 ```
 
 Create a local VSIX package:
-
-```bash
-npm run package
-```
-
-## Publishing
-
-DiffStream uses `@vscode/vsce` for packaging and publishing.
-
-Before publishing, create a Visual Studio Marketplace publisher and authenticate with `vsce`:
-
-```bash
-npx vsce login <publisher-id>
-```
-
-Then publish:
-
-```bash
-npm run publish
-```
-
-You can also create a `.vsix` and upload it manually from the Visual Studio Marketplace publisher management page:
 
 ```bash
 npm run package

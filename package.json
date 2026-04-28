@@ -1,7 +1,7 @@
 {
   "name": "diffstream",
   "displayName": "DiffStream",
-  "description": "A live workspace change feed with compact line-level diffs for files edited inside or outside VS Code.",
+  "description": "A local file change timeline for Visual Studio Code workspaces with compact line-level diffs.",
   "version": "0.1.0",
   "publisher": "AykutSupurtulu",
   "license": "MIT",
@@ -22,11 +22,10 @@
   ],
   "keywords": [
     "diff",
-    "activity",
+    "timeline",
     "changes",
-    "watcher",
     "workspace",
-    "files"
+    "review"
   ],
   "galleryBanner": {
     "color": "#18181b",
@@ -34,8 +33,7 @@
   },
   "activationEvents": [
     "onStartupFinished",
-    "onCommand:diffstream.openFeed",
-    "workspaceContains:**/*"
+    "onCommand:diffstream.openFeed"
   ],
   "main": "./dist/extension.js",
   "extensionKind": [
