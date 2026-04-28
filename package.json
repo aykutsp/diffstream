@@ -3,7 +3,7 @@
   "displayName": "DiffStream",
   "description": "A live workspace change feed with compact line-level diffs for files edited inside or outside VS Code.",
   "version": "0.1.0",
-  "publisher": "diffstream",
+  "publisher": "AykutSupurtulu",
   "license": "MIT",
   "repository": {
     "type": "git",
