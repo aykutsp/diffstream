@@ -46,7 +46,7 @@
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts",
     "test": "npm run compile && node --test --require ./dist/test/setup.js \"dist/test/**/*.test.js\"",
-    "package": "vsce package --allow-missing-repository --no-rewrite-relative-links",
+    "package": "vsce package",
     "publish": "vsce publish"
   },
   "dependencies": {
